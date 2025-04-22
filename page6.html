@@ -1,0 +1,181 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Guess 6</title>
+ 
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+     
+     body {
+         font-family: 'Press Start 2P', cursive;
+         background: url("assets/2.png") no-repeat center center fixed;
+         background-size: cover;
+         margin: 0;
+         padding: 0;
+         text-align: center;
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         justify-content: center;
+         min-height: 100vh;
+         color: white;
+         animation: fadeIn 0.5s ease-out;
+     }
+     
+     h1, h2, p {
+         margin: 20px;
+         font-size: 1rem;
+     }
+     
+     .button, .options button, .nav a, button {
+         font-family: 'Press Start 2P', cursive;
+         display: inline-block;
+         padding: 15px 25px;
+         background: #00ff99;
+         color: black;
+         border: none;
+         border-radius: 12px;
+         text-decoration: none;
+         font-size: 0.7rem;
+         cursor: pointer;
+         transition: all 0.3s ease;
+         margin: 10px;
+         box-shadow: 0 4px 6px rgba(0, 255, 153, 0.5);
+     }
+     
+     .button:hover, .options button:hover, .nav a:hover, button:hover {
+         transform: translateY(-3px) scale(1.05);
+         background: #00cc88;
+         box-shadow: 0 8px 15px rgba(0, 255, 153, 0.7);
+     }
+     
+     .button:active, .options button:active, .nav a:active, button:active {
+         transform: translateY(1px) scale(0.97);
+     }
+     
+     .result {
+         font-size: 0.9rem;
+         margin: 20px;
+     }
+     
+     .options {
+         display: flex;
+         flex-direction: column;
+         gap: 10px;
+         margin-top: 20px;
+     }
+     
+     .nav {
+         margin-top: 30px;
+         display: flex;
+         justify-content: space-between;
+         gap: 20px;
+     }
+     
+     @media screen and (max-width: 480px) {
+         .button, .options button, .nav a, button {
+             font-size: 0.6rem;
+             padding: 12px 18px;
+         }
+     
+         h1, h2, p {
+             font-size: 0.8rem;
+         }
+     
+         .options {
+             flex-direction: column;
+         }
+     
+         .nav {
+             flex-direction: column;
+             align-items: center;
+         }
+     }
+     .emoji {
+    font-size: 3rem;
+    vertical-align: middle;
+}
+
+     @keyframes fadeIn {
+         from { opacity: 0; transform: translateY(10px); }
+         to { opacity: 1; transform: translateY(0); }
+     }
+     
+         </style>
+    <script>
+        function playSound() {
+            const audio = document.getElementById('soundtrack');
+            audio.currentTime = 0;
+            audio.play().catch(error => {
+                console.error("Playback failed:", error);
+            });
+        }
+
+        function checkAnswer(btn, correct) {
+            let result = document.getElementById("result");
+            if (btn.innerText === correct) {
+                result.innerText = "✅ Correct!";
+                result.style.color = "green";
+                updateScore(true);
+            } else {
+                result.innerText = "❌ Wrong!";
+                result.style.color = "red";
+                updateScore(false);
+            }
+            disableButtons();
+        }
+
+        function updateScore(isCorrect) {
+            let score = parseInt(localStorage.getItem("score") || "0");
+            let attempted = parseInt(localStorage.getItem("attempted") || "0");
+            if (isCorrect) score++;
+            attempted++;
+            localStorage.setItem("score", score);
+            localStorage.setItem("attempted", attempted);
+            document.getElementById("score").innerText = `🧠 Your score: ${score}/${attempted}`;
+        }
+
+        function disableButtons() {
+            const buttons = document.querySelectorAll(".options button");
+            buttons.forEach(btn => btn.disabled = true);
+        }
+
+        function loadScore() {
+            let score = parseInt(localStorage.getItem("score") || "0");
+            let attempted = parseInt(localStorage.getItem("attempted") || "0");
+            document.getElementById("score").innerText = `🧠 Your score: ${score}/${attempted}`;
+        }
+    </script>
+</head>
+<body onload="loadScore()">
+    <h2><span class="emoji">🔊</span> What is this soundtrack?</h2>
+
+    <audio id="soundtrack">
+        <source src="assets/gta_sanand.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <button onclick="playSound()">▶️ Play Sound</button>
+
+    <div id="score" class="result"></div>
+    <div class="options">
+<button onclick="checkAnswer(this, 'GTA')">Crash Bandicoot</button>
+<button onclick="checkAnswer(this, 'GTA')">GTA</button>
+<button onclick="checkAnswer(this, 'GTA')">Black Ops</button>
+
+    </div>
+    <div id="result" class="result"></div>
+    <div class="nav"><a href='page5.html'>⬅ Back</a><a href='page7.html'>Next ➡</a></div>
+</body>
+</html> <script>
+    function playSound() {
+        const audio = document.getElementById('soundtrack');
+        audio.currentTime = 0; 
+        audio.play().catch(error => {
+            console.error("Playback failed:", error);
+        });
+    }
+</script>
+</body>
+</html>

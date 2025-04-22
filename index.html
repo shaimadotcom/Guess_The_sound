@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome</title>
+ 
+    <style>
+   @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+body {
+    font-family: 'Press Start 2P', cursive;
+    background: url("assets/2.png") no-repeat center center fixed;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    color: white;
+    animation: fadeIn 0.5s ease-out;
+}
+
+h1, h2, p {
+    margin: 20px;
+    font-size: 1rem;
+}
+
+.button, .options button, .nav a, button {
+    font-family: 'Press Start 2P', cursive;
+    display: inline-block;
+    padding: 15px 25px;
+    background: #00ff99;
+    color: black;
+    border: none;
+    border-radius: 12px;
+    text-decoration: none;
+    font-size: 0.7rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 10px;
+    box-shadow: 0 4px 6px rgba(0, 255, 153, 0.5);
+}
+
+.button:hover, .options button:hover, .nav a:hover, button:hover {
+    transform: translateY(-3px) scale(1.05);
+    background: #00cc88;
+    box-shadow: 0 8px 15px rgba(0, 255, 153, 0.7);
+}
+
+.button:active, .options button:active, .nav a:active, button:active {
+    transform: translateY(1px) scale(0.97);
+}
+.emoji {
+    font-size: 3rem;
+    vertical-align: middle;
+}
+
+.result {
+    font-size: 0.9rem;
+    margin: 20px;
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.nav {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+@media screen and (max-width: 480px) {
+    .button, .options button, .nav a, button {
+        font-size: 0.6rem;
+        padding: 12px 18px;
+    }
+
+    h1, h2, p {
+        font-size: 0.8rem;
+    }
+
+    .options {
+        flex-direction: column;
+    }
+
+    .nav {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+    </style>
+</head>
+<body>
+    <div class="page-transition" id="pageTransition"></div>
+    <h1><span class="emoji">🎮</span>  Welcome to Guess the Soundtrack!</h1>
+    <p>Test your memory and guess which game the sound belongs to.</p>
+    <a href="page1.html" class="button" onclick="navigate(event)">Start Game</a>
+
+    <script>
+        function navigate(event) {
+            event.preventDefault();
+            const transition = document.getElementById('pageTransition');
+            transition.style.opacity = '1';
+            setTimeout(() => {
+                window.location.href = event.target.href;
+            }, 300);
+        }
+    </script>
+</body>
+</html>
